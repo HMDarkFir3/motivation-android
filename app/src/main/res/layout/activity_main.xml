@@ -8,14 +8,14 @@
     tools:context=".ui.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_motivation_types"
+        android:id="@+id/tab_motivation_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIconTint="@color/tab_icon_color"
+        app:tabIconTint="@color/tab_item_toggle_color"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="4dp">
 
@@ -45,7 +45,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_motivation_types" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_motivation_category" />
 
     <TextView
         android:id="@+id/text_phrase"

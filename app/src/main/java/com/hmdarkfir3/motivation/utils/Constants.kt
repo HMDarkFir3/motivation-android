@@ -5,4 +5,10 @@ class Constants private constructor() {
         const val MOTIVATION_STORAGE = "MOTIVATION_APP"
         const val USERNAME_KEY = "USERNAME"
     }
+
+    object CATEGORY {
+        const val ALL = 0
+        const val HAPPY = 1
+        const val SUNNY = 2
+    }
 }

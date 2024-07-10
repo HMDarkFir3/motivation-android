@@ -11,7 +11,6 @@ import com.hmdarkfir3.motivation.R
 import com.hmdarkfir3.motivation.utils.Constants
 import com.hmdarkfir3.motivation.data.SecurityPreferences
 import com.hmdarkfir3.motivation.databinding.ActivityUserBinding
-import kotlin.reflect.KClass
 
 class UserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserBinding
@@ -31,11 +30,11 @@ class UserActivity : AppCompatActivity() {
 
         mSecurityPreferences = SecurityPreferences(this)
 
+        verifyUsernameAlreadyExists()
+
         binding.buttonSave.setOnClickListener {
             handleSave()
         }
-
-        verifyUsernameAlreadyExists()
     }
 
     private fun handleSave() {
