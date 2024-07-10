@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_motivation_types"
@@ -60,10 +60,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view_bar"
         android:layout_width="160dp"
         android:layout_height="2dp"
         android:layout_marginTop="32dp"
         android:background="@color/dark_purple"
+        android:elevation="4dp"
         app:layout_constraintCircleRadius="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

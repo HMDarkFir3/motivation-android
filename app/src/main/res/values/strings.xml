@@ -3,6 +3,7 @@
     <string name="lets_start">Vamos começar?</string>
     <string name="whats_your_name">Qual seu nome?</string>
     <string name="save">Salvar</string>
-    <string name="hello">Olá</string>
+    <string name="hello">Olá, %1$s!</string>
     <string name="new_phrase">Nova Frase</string>
+    <string name="validation_mandatory_name">Informe seu nome.</string>
 </resources>
