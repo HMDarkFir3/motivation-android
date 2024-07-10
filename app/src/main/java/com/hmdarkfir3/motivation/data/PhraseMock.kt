@@ -1,4 +1,5 @@
 package com.hmdarkfir3.motivation.data
+
 import com.hmdarkfir3.motivation.models.PhraseModel
 import com.hmdarkfir3.motivation.utils.Constants
 import kotlin.random.Random
@@ -23,13 +24,13 @@ class PhraseMock {
     fun getPhrase(categoryId: Int): String {
         val filteredPhrases = listPhrases.filter { it.categoryId == categoryId || categoryId == ALL }
         val rand = Random.nextInt(filteredPhrases.size)
-        
+
         return filteredPhrases[rand].description
     }
 
     companion object {
-        private const val ALL = Constants.CATEGORY.ALL
-        private const val HAPPY = Constants.CATEGORY.HAPPY
-        private const val SUNNY = Constants.CATEGORY.SUNNY
+        private const val ALL = Constants.Category.ALL
+        private const val HAPPY = Constants.Category.HAPPY
+        private const val SUNNY = Constants.Category.SUNNY
     }
 }

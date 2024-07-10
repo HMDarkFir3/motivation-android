@@ -22,16 +22,26 @@ class UserActivity : AppCompatActivity() {
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.user.id)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
         mSecurityPreferences = SecurityPreferences(this)
 
-        verifyUsernameAlreadyExists()
+        setupWindowInsets()
+        setupListeners()
 
+        if (isUsernameAlreadyExists()) {
+            navigateToMainActivity()
+            finish()
+        }
+    }
+
+    private fun setupWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.user) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+
+    private fun setupListeners() {
         binding.buttonSave.setOnClickListener {
             handleSave()
         }
@@ -45,22 +55,17 @@ class UserActivity : AppCompatActivity() {
             return
         }
 
-        mSecurityPreferences.storeStringAttribute(Constants.KEY.USERNAME_KEY, username)
-
-        startActivity(navigateToActivity(MainActivity::class.java))
+        mSecurityPreferences.storeStringAttribute(Constants.Key.USERNAME_KEY, username)
+        navigateToMainActivity()
         finish()
     }
 
-    private fun verifyUsernameAlreadyExists() {
-        val username = mSecurityPreferences.getStringAttributes(Constants.KEY.USERNAME_KEY)
-
-        if (username.isNotEmpty()) {
-            startActivity(navigateToActivity(MainActivity::class.java))
-            finish()
-        }
+    private fun isUsernameAlreadyExists(): Boolean {
+        val username = mSecurityPreferences.getStringAttributes(Constants.Key.USERNAME_KEY)
+        return username.isNotEmpty()
     }
 
-    private fun <T> navigateToActivity(clazz: Class<T>): Intent {
-        return Intent(this, clazz)
+    private fun navigateToMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

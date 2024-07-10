@@ -21,24 +21,35 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.main.id)) { v, insets ->
+
+        setupWindowInsets()
+        setupStatusBar()
+        setupListeners()
+    }
+
+    private fun setupWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun setupStatusBar() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.purple)
+    }
 
-        getUsernameOfSharedPreferences()
+    private fun setupListeners() {
+        setUsernameGreeting()
         handleNewPhrase()
-
         binding.buttonNewPhrase.setOnClickListener {
             handleNewPhrase()
         }
     }
 
-    private fun getUsernameOfSharedPreferences() {
-        val username = SecurityPreferences(this).getStringAttributes(Constants.KEY.USERNAME_KEY)
+    private fun setUsernameGreeting() {
+        val username = SecurityPreferences(this).getStringAttributes(Constants.Key.USERNAME_KEY)
         val helloMessage = getString(R.string.hello, username)
         binding.textHello.text = helloMessage
     }
