@@ -48,6 +48,7 @@ class UserActivity : AppCompatActivity() {
         mSecurityPreferences.storeStringAttribute(Constants.KEY.USERNAME_KEY, username)
 
         startActivity(navigateToActivity(MainActivity::class.java))
+        finish()
     }
 
     private fun verifyUsernameAlreadyExists() {
